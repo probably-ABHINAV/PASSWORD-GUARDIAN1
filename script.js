@@ -1,12 +1,13 @@
 // Password analysis function
 function analyzePassword(password) {
+    const length = password.length;
     const hasUppercase = /[A-Z]/.test(password);
     const hasLowercase = /[a-z]/.test(password);
     const hasNumbers = /[0-9]/.test(password);
     const hasSpecial = /[!@#$%^&*]/.test(password);
     
     let strength = 0;
-    if (password.length > 8) strength += 25;
+    if (length > 8) strength += 25;
     if (hasUppercase && hasLowercase) strength += 25;
     if (hasNumbers) strength += 25;
     if (hasSpecial) strength += 25;
@@ -14,7 +15,7 @@ function analyzePassword(password) {
     return {
         strength,
         criteria: {
-            length: password.length >= 8,
+            length: length >= 8,
             complexity: (hasUppercase && hasLowercase && hasNumbers),
             unique: !(/(.)\1{2,}/.test(password)),
             patternFree: !(/123|abc|qwerty/i.test(password))
@@ -57,11 +58,9 @@ function updateHistoryDisplay() {
 // Event listeners
 document.getElementById("password-input").addEventListener("input", (e) => {
     const password = e.target.value;
-    if (!password) return;
-    
     const analysis = analyzePassword(password);
     
-    // Update strength bar
+    // Update strength bar and recommendations
     const strengthBar = document.querySelector(".strength-bar");
     strengthBar.style.width = analysis.strength + "%";
     strengthBar.style.backgroundColor = analysis.strength <= 25 ? "#ff4444" :
@@ -80,12 +79,10 @@ document.getElementById("password-input").addEventListener("input", (e) => {
     cards[2].className = `card ${analysis.criteria.unique ? 'pass' : 'fail'}`;
     cards[3].className = `card ${analysis.criteria.patternFree ? 'pass' : 'fail'}`;
 
-    // Update vulnerability bar
-    const vulBar = document.querySelector(".vulnerability-bar");
-    vulBar.style.width = (100 - analysis.strength) + "%";
-    
     // Update detailed analysis
     const detailedSection = document.querySelector(".detailed-analysis-section");
+    if (!password) return;
+    
     const weaknesses = [];
     if (password.length < 8) {
         weaknesses.push(`<div class="weakness red">❌ Password is too short (currently ${password.length} characters, minimum 8 needed)</div>`);
@@ -141,10 +138,11 @@ document.getElementById("password-input").addEventListener("input", (e) => {
         </div>
     `;
 
-    // Add to history
+    // Add password to history
     addToHistory(password, analysis.strength);
 });
 
+// Event listener for toggle visibility
 document.getElementById("toggle-visibility").addEventListener("click", () => {
     const passwordInput = document.getElementById("password-input");
     passwordInput.type = passwordInput.type === "password" ? "text" : "password";
