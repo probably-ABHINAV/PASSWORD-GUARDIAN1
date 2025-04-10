@@ -59,8 +59,8 @@ function updateHistoryDisplay() {
 document.getElementById("password-input").addEventListener("input", (e) => {
     const password = e.target.value;
     const analysis = analyzePassword(password);
-    
-    // Update strength bar and recommendations
+
+    // Update strength bar
     const strengthBar = document.querySelector(".strength-bar");
     strengthBar.style.width = analysis.strength + "%";
     strengthBar.style.backgroundColor = analysis.strength <= 25 ? "#ff4444" :
@@ -82,8 +82,9 @@ document.getElementById("password-input").addEventListener("input", (e) => {
     // Update detailed analysis
     const detailedSection = document.querySelector(".detailed-analysis-section");
     if (!password) return;
-    
+
     const weaknesses = [];
+    // Length analysis
     if (password.length < 8) {
         weaknesses.push(`<div class="weakness red">❌ Password is too short (currently ${password.length} characters, minimum 8 needed)</div>`);
     } else if (password.length < 12) {
@@ -121,11 +122,12 @@ document.getElementById("password-input").addEventListener("input", (e) => {
     else if (combinations > 1e9) timeEstimate = "months";
     else if (combinations > 1e7) timeEstimate = "days";
     else if (combinations > 1e5) timeEstimate = "hours";
-    else if (combinations > 1e3) timeEstimate = "minutes";
 
-    weaknesses.push(`<div class="weakness ${timeEstimate === 'instant' ? 'red' : timeEstimate === 'years' ? 'green' : 'yellow'}">
-        🕒 Estimated time to crack: ${timeEstimate}
-    </div>`);
+    if (password) {
+        weaknesses.push(`<div class="weakness ${timeEstimate === 'instant' ? 'red' : timeEstimate === 'years' ? 'green' : 'yellow'}">
+            🕒 Estimated time to crack: ${timeEstimate}
+        </div>`);
+    }
     
     const weaknessHTML = weaknesses.length ? weaknesses.join('') : '<div class="weakness green">✅ Your password is strong!</div>';
     detailedSection.innerHTML = `
@@ -138,11 +140,10 @@ document.getElementById("password-input").addEventListener("input", (e) => {
         </div>
     `;
 
-    // Add password to history
+    // Add to history
     addToHistory(password, analysis.strength);
 });
 
-// Event listener for toggle visibility
 document.getElementById("toggle-visibility").addEventListener("click", () => {
     const passwordInput = document.getElementById("password-input");
     passwordInput.type = passwordInput.type === "password" ? "text" : "password";
@@ -151,4 +152,33 @@ document.getElementById("toggle-visibility").addEventListener("click", () => {
 // Password generator configuration
 document.getElementById("password-length").addEventListener("input", (e) => {
     document.getElementById("length-value").textContent = e.target.value;
+});
+
+document.getElementById("generate-btn").addEventListener("click", () => {
+    const length = parseInt(document.getElementById("password-length").value);
+    const useUpper = document.getElementById("include-uppercase").checked;
+    const useLower = document.getElementById("include-lowercase").checked;
+    const useNumbers = document.getElementById("include-numbers").checked;
+    const useSymbols = document.getElementById("include-symbols").checked;
+    
+    let charset = "";
+    if (useUpper) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (useLower) charset += "abcdefghijklmnopqrstuvwxyz";
+    if (useNumbers) charset += "0123456789";
+    if (useSymbols) charset += "!@#$%^&*()_+-=[]{}|;:,.<>?";
+    
+    if (!charset) {
+        alert("Please select at least one character type!");
+        return;
+    }
+    
+    let password = "";
+    for (let i = 0; i < length; i++) {
+        const randIndex = Math.floor(Math.random() * charset.length);
+        password += charset[randIndex];
+    }
+    
+    const passwordInput = document.getElementById("password-input");
+    passwordInput.value = password;
+    passwordInput.dispatchEvent(new Event('input'));
 });
