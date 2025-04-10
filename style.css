@@ -52,10 +52,11 @@ input[type="password"] {
 }
 
 .strength-bar {
-    width: 60%;
+    width: 0;
     height: 100%;
-    background: linear-gradient(to right, #f39c12, #e74c3c);
+    background: linear-gradient(to right, #e74c3c, #f1c40f, #2ecc71);
     border-radius: 6px;
+    transition: width 0.3s ease;
 }
 
 .criteria-cards {
@@ -89,22 +90,61 @@ button {
     cursor: pointer;
 }
 
-.recommendations-list li, .security-tips ul li {
+.recommendations-list li {
     margin: 10px 0;
     font-size: 0.95em;
 }
 
-.bar-container {
-    margin-top: 10px;
-    background: #222;
-    height: 10px;
-    border-radius: 6px;
-    position: relative;
+.generator-config {
+    margin-bottom: 15px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
 }
 
-.vulnerability-bar {
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(to right, #f1c40f, #e67e22);
+.config-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.config-options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.length-selector {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.length-selector input[type="range"] {
+    width: 100%;
+}
+
+.history-list {
+    margin-top: 10px;
+}
+
+.history-entry {
+    padding: 10px;
+    margin: 8px 0;
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-entry .password-info {
+    flex-grow: 1;
+}
+
+.history-entry .timestamp {
+    font-size: 0.8em;
+    color: #888;
 }
