@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Guardian</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>🔑 Password Analyzer</h1>
+        </header>
+
+        <main class="main-content">
+            <section class="analysis-section glass-box">
+                <h2>Password Analysis</h2>
+                <div class="password-input-container">
+                    <input type="password" id="password-input" placeholder="Enter your password..." />
+                    <span id="toggle-visibility">👁️</span>
+                </div>
+                <div class="strength-bar-container">
+                    <div class="strength-bar"></div>
+                    <span class="strength-label">Medium</span>
+                </div>
+                <div class="criteria-cards">
+                    <div class="card fail">❌<p>Length</p></div>
+                    <div class="card warn">⚠️<p>Complexity</p></div>
+                    <div class="card pass">✅<p>Uniqueness</p></div>
+                    <div class="card pass">✅<p>Pattern-free</p></div>
+                </div>
+            </section>
+
+            <section class="recommendations-section glass-box">
+                <h2>💡 Smart Recommendations</h2>
+                <button id="generate-btn">🔄 Generate Strong Password</button>
+                <ul class="recommendations-list">
+                    <li>➜ Add more special characters</li>
+                    <li>➜ Increase the length of your password</li>
+                    <li>➜ Mix uppercase and lowercase letters</li>
+                </ul>
+            </section>
+
+            <section class="detailed-analysis-section glass-box">
+                <h2>📘 Detailed Analysis</h2>
+                <div class="weakness red">❌ Add more sequential patterns (like '123' or 'abc')</div>
+                <div class="weakness yellow">⚠️ Contains common dictionary words</div>
+                <h3>Dictionary Attack Vulnerability</h3>
+                <div class="bar-container">
+                    <div class="vulnerability-bar"></div>
+                    <span>Medium</span>
+                </div>
+            </section>
+
+            <section class="security-tips glass-box">
+                <h2>🛡️ Security Tips</h2>
+                <ul>
+                    <li>✅ Use a password manager</li>
+                    <li>✅ Enable two-factor authentication</li>
+                    <li>✅ Avoid reusing passwords</li>
+                    <li>✅ Change passwords regularly</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

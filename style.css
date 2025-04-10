@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(145deg, #0d1117, #161b22);
+    color: white;
+    padding: 20px;
+}
+
+.glass-box {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+input[type="password"] {
+    padding: 12px 20px;
+    width: 100%;
+    font-size: 1.1em;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    outline: none;
+}
+
+.password-input-container {
+    position: relative;
+}
+
+#toggle-visibility {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.strength-bar-container {
+    background: #333;
+    border-radius: 6px;
+    margin-top: 10px;
+    position: relative;
+    height: 8px;
+}
+
+.strength-bar {
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(to right, #f39c12, #e74c3c);
+    border-radius: 6px;
+}
+
+.criteria-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.card {
+    flex: 1;
+    margin: 0 5px;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.3);
+    font-weight: bold;
+}
+
+.card.fail { background: rgba(255,0,0,0.2); }
+.card.warn { background: rgba(255,165,0,0.2); }
+.card.pass { background: rgba(0,255,0,0.2); }
+
+button {
+    background-color: #00c6ff;
+    border: none;
+    padding: 12px 20px;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.recommendations-list li, .security-tips ul li {
+    margin: 10px 0;
+    font-size: 0.95em;
+}
+
+.bar-container {
+    margin-top: 10px;
+    background: #222;
+    height: 10px;
+    border-radius: 6px;
+    position: relative;
+}
+
+.vulnerability-bar {
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, #f1c40f, #e67e22);
+    border-radius: 6px;
+}
