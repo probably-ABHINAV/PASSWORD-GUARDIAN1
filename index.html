@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Password Guardian</title>
+    <meta name="description" content="Check your password strength, get recommendations, and keep track of password history with Password Guardian." />
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,7 +12,6 @@
         <header class="app-header">
             <h1>🔑 Password Analyzer</h1>
         </header>
-
         <main class="main-content">
             <section class="analysis-section glass-box">
                 <h2>Password Analysis</h2>
@@ -30,9 +30,21 @@
                     <div class="card pass">✅<p>Pattern-free</p></div>
                 </div>
             </section>
-
             <section class="recommendations-section glass-box">
                 <h2>💡 Smart Recommendations</h2>
+                <div class="generator-config">
+                    <h3>Password Generator</h3>
+                    <div class="config-options">
+                        <label><input type="checkbox" id="include-uppercase" checked> Uppercase Letters</label>
+                        <label><input type="checkbox" id="include-lowercase" checked> Lowercase Letters</label>
+                        <label><input type="checkbox" id="include-numbers" checked> Numbers</label>
+                        <label><input type="checkbox" id="include-symbols" checked> Special Characters</label>
+                        <div class="length-selector">
+                            <label>Length: <span id="length-value">16</span></label>
+                            <input type="range" id="password-length" min="8" max="32" value="16">
+                        </div>
+                    </div>
+                </div>
                 <button id="generate-btn">🔄 Generate Strong Password</button>
                 <ul class="recommendations-list">
                     <li>➜ Add more special characters</li>
@@ -40,26 +52,13 @@
                     <li>➜ Mix uppercase and lowercase letters</li>
                 </ul>
             </section>
-
             <section class="detailed-analysis-section glass-box">
                 <h2>📘 Detailed Analysis</h2>
-                <div class="weakness red">❌ Add more sequential patterns (like '123' or 'abc')</div>
-                <div class="weakness yellow">⚠️ Contains common dictionary words</div>
-                <h3>Dictionary Attack Vulnerability</h3>
-                <div class="bar-container">
-                    <div class="vulnerability-bar"></div>
-                    <span>Medium</span>
-                </div>
+                <div class="history-list"></div>
             </section>
-
-            <section class="security-tips glass-box">
-                <h2>🛡️ Security Tips</h2>
-                <ul>
-                    <li>✅ Use a password manager</li>
-                    <li>✅ Enable two-factor authentication</li>
-                    <li>✅ Avoid reusing passwords</li>
-                    <li>✅ Change passwords regularly</li>
-                </ul>
+            <section class="password-history glass-box">
+                <h2>📜 Password History</h2>
+                <div class="history-list"></div>
             </section>
         </main>
     </div>
