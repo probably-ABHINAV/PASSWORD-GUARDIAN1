@@ -7,7 +7,7 @@ A modern, interactive password analysis and management tool that helps users cre
 
 ## 🌟 Demo
 
-[View Live Demo](https://password-guardian.repl.co)
+[View Live Demo](https://password-guardiann.netlify.app/)
 
 ## ⚡ Features
 
