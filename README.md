@@ -8,6 +8,7 @@ A modern, interactive password analysis and management tool that helps users cre
 ## 🌟 Demo
 
 [View Live Demo](https://password-guardiann.netlify.app/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0ba0df62-5df3-43e6-a83c-4b8801482bef/deploy-status)](https://app.netlify.com/sites/password-guardiann/deploys)
 
 ## ⚡ Features
 
