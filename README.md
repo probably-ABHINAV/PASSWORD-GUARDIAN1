@@ -156,6 +156,6 @@ Additional resources and documentation can be found in the [docs](docs/) directo
 
 This project is used by:
 
-- Your Company Name
-- Personal Projects
+- Your Company Name - Exioraa
+- Personal Projects - check 
 - Security Workshops
